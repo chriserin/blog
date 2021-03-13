@@ -30,6 +30,17 @@ config :blog, BlogWeb.Endpoint,
   ],
   secret_key_base: secret_key_base
 
+basic_creds =
+  System.get_env("BASIC_CREDS") ||
+    raise """
+    environment variable BASIC_CREDS is missing.
+    For example: USER:PASS
+    """
+
+config :blog,
+  basic_user: String.split(basic_creds, ":") |> List.first(),
+  basic_pass: String.split(basic_creds, ":") |> List.last()
+
 # ## Using releases (Elixir v1.9+)
 #
 # If you are doing OTP releases, you need to instruct Phoenix

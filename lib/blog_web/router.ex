@@ -13,16 +13,32 @@ defmodule BlogWeb.Router do
     plug :accepts, ["json"]
   end
 
+  pipeline :private do
+    plug :basic_auth
+  end
+
+  scope "/", BlogWeb do
+    pipe_through :browser
+    pipe_through :basic_auth
+
+    get "/posts/:id/edit", PostController, :edit
+    get "/posts/new", PostController, :new
+    post "/posts", PostController, :create
+    delete "/posts/:id", PostController, :delete
+  end
+
   scope "/", BlogWeb do
     pipe_through :browser
 
     get "/", PostController, :index
     get "/posts", PostController, :index
-    get "/posts/:id/edit", PostController, :edit
-    get "/posts/new", PostController, :new
-    post "/posts", PostController, :create
     get "/posts/:id", PostController, :show
-    delete "/posts/:id", PostController, :delete
+  end
+
+  def basic_auth(conn, opts) do
+    username = Application.fetch_env!(:blog, :basic_user)
+    password = Application.fetch_env!(:blog, :basic_pass)
+    Plug.BasicAuth.basic_auth(conn, username: username, password: password)
   end
 
   # Other scopes may use custom stacks.

@@ -1,18 +1,14 @@
-<h1>Show Post</h1>
-
-<ul>
-
-  <li>
-    <strong>Title:</strong>
+<div class="post">
+  <div class="title">
+    <strong>
     <%= @post.title %>
-  </li>
+    </strong>
+  </div>
 
-  <li>
-    <strong>Body:</strong>
+  <div class="body">
     <%= raw Earmark.as_html!(@post.body)  %>
-  </li>
-
-</ul>
+  </div>
+</div>
 
 <span><%= link "Edit", to: Routes.post_path(@conn, :edit, @post) %></span>
 <span><%= link "Back", to: Routes.post_path(@conn, :index) %></span>

@@ -18,7 +18,7 @@ defmodule Blog.Posts do
 
   """
   def list_posts do
-    Repo.all(Post)
+    Repo.all(Post |> order_by([p], desc: p.inserted_at))
   end
 
   @doc """

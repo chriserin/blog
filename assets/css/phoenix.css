@@ -99,3 +99,15 @@ header nav a {
     margin: 2rem 1rem;
   }
 }
+
+/* 2f1847 624763 c62e65 d63af9 */
+
+a {
+  color: #c62e65;
+  text-decoration: none;
+}
+
+a:visited {
+  color: #d63af9;
+  text-decoration: none;
+}

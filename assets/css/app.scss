@@ -35,7 +35,21 @@
   margin: -1rem 0 2rem;
 }
 
+/* 2f1847 624763 c62e65 d63af9 */
+
 .title {
   font-size: 24px;
   margin-bottom: 2rem;
+  color: #fdfdfd;
+  background-color: #2f1847;
+  padding: 2rem;
+}
+
+.body, .list-container {
+  background-color: #fdfdfd;
+  padding: 2rem;
+}
+
+body {
+  background-color: #e2e2e2;
 }

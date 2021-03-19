@@ -9,7 +9,7 @@
 
   <li>
     <strong>Body:</strong>
-    <%= @post.body %>
+    <%= raw Earmark.as_html!(@post.body)  %>
   </li>
 
 </ul>

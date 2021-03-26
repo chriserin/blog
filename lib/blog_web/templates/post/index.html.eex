@@ -1,14 +1,11 @@
 <h1>Blog Posts</h1>
 
 <div class="list-container">
-  <table>
-    <tbody>
   <%= for post <- @posts do %>
-      <tr>
-        <td><%= link raw(Earmark.as_html!(post.title)), to: Routes.post_path(@conn, :show, post) %></td>
-
-      </tr>
+    <a href="<%= Routes.post_path(@conn, :show, post) %>">
+      <div class="list-post">
+        <%= raw(Earmark.as_html!(post.title))  %></td>
+      </div>
+    </a>
   <% end %>
-    </tbody>
-  </table>
 </div>

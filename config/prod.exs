@@ -13,7 +13,8 @@ config :blog, BlogWeb.Endpoint,
   url: [host: "chriserin.blog", port: 80],
   cache_static_manifest: "priv/static/cache_manifest.json",
   check_origin: ["//chriserin.blog"],
-  force_ssl: [rewrite_on: [:x_forwarded_proto]]
+  force_ssl: [rewrite_on: [:x_forwarded_proto]],
+  server: true
 
 # Do not print debug messages in production
 config :logger, level: :info

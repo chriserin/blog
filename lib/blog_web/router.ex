@@ -21,6 +21,7 @@ defmodule BlogWeb.Router do
     pipe_through :browser
     pipe_through :basic_auth
 
+    # Creating and editing posts
     get "/posts/:id/edit", PostController, :edit
     get "/posts/new", PostController, :new
     post "/posts", PostController, :create
@@ -31,12 +32,20 @@ defmodule BlogWeb.Router do
   scope "/", BlogWeb do
     pipe_through :browser
 
+    # General site links
     get "/", PostController, :index
     get "/posts", PostController, :index
     get "/posts/:id", PostController, :show
+    get "/about", PageController, :about
+    get "/projects", PageController, :projects
+    get "/now", PageController, :now
+
+    # TILS
+    get "/tils", TilController, :index
+    get "/tils/:id", TilController, :show
   end
 
-  def basic_auth(conn, opts) do
+  def basic_auth(conn, _opts) do
     username = Application.fetch_env!(:blog, :basic_user)
     password = Application.fetch_env!(:blog, :basic_pass)
     Plug.BasicAuth.basic_auth(conn, username: username, password: password)

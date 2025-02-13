@@ -1,0 +1,12 @@
+<div class="list-container">
+  <%= for til <- @tils do %>
+      <div class="list-post">
+        <div class="title">
+          <a href={~p"/tils/#{til}"}>
+            <div><%= til.title  %></div>
+          </a>
+        </div>
+        <div class="content"><%= raw(Earmark.as_html!(til.content))  %></div>
+      </div>
+  <% end %>
+</div>

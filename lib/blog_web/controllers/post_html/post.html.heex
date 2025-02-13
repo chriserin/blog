@@ -1,0 +1,9 @@
+      <div class="list-post">
+        <div class="date"><%= Calendar.strftime(@post.inserted_at, "%-m/%-d/%Y") %></div>
+        <div class="title">
+          <a href={~p"/posts/#{@post}"}>
+            <div><%= @post.title  %></div>
+          </a>
+        </div>
+        <div class="content"><%= raw(Earmark.as_html!(@post.body))  %></div>
+      </div>

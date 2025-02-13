@@ -1,0 +1,6 @@
+
+<div class="list-container">
+  <%= for post <- @posts do %>
+    <.post post={post} conn={@conn} />
+  <% end %>
+</div>

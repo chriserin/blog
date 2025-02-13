@@ -1,0 +1,165 @@
+/* This file is for your main application css. */
+@import "./phoenix.css";
+
+* {
+  --general-background: #fafafa;
+  --accent-color: #8cab8c;
+  --main: #444444;
+}
+
+/* Alerts and form errors */
+.alert {
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+
+.alert-info {
+  color: #31708f;
+  background-color: #d9edf7;
+  border-color: #bce8f1;
+}
+
+.alert-warning {
+  color: #8a6d3b;
+  background-color: #fcf8e3;
+  border-color: #faebcc;
+}
+
+.alert-danger {
+  color: #a94442;
+  background-color: #f2dede;
+  border-color: #ebccd1;
+}
+
+.alert p {
+  margin-bottom: 0;
+}
+
+.alert:empty {
+  display: none;
+}
+
+.invalid-feedback {
+  color: #a94442;
+  display: block;
+  margin: -1rem 0 2rem;
+}
+
+main.container {
+  --main-gray: #999999;
+  padding: 0;
+
+  .list-container {
+    background-color: var(--general-background);
+    padding: 0rem 0rem;
+
+
+    a:last-child .list-post {
+      border-bottom: 0;
+    }
+  }
+}
+
+.list-post {
+  padding: 2rem;
+  border-bottom: 1px none var(--main-gray);
+
+  .date {
+    line-height: 0.4rem;
+    font-size: 10pt;
+    font-style: italic;
+    color: var(--main-gray);
+  }
+
+  .title {
+
+    font-family: Proxima Nova;
+    font-weight: 400;
+    font-size: 18pt;
+
+    a,
+    a:visited {
+      color: #444444;
+      text-decoration: none;
+    }
+  }
+
+  .content {
+    font-family: 'Times New Roman', Times, serif;
+  }
+}
+
+main.content section {
+  padding: 2rem;
+
+  ul {
+    font-family: 'Times New Roman', Times, serif;
+  }
+}
+
+body {
+  background-color: var(--general-background);
+  margin: 0;
+}
+
+header {
+  display: flex;
+  flex-direction: row-reverse;
+
+  a,
+  a:visited {
+    text-decoration: none;
+  }
+
+  a:current {
+    color: var(--accent-color);
+  }
+
+  color: #444444;
+
+  .top {
+    background-color: var(--general-background);
+    border-bottom: 2px solid #444444;
+    margin-bottom: 1rem;
+    padding-bottom: 4px;
+    padding-top: 3rem;
+    display: flex;
+
+  }
+
+  .heading {
+    line-height: 1.2;
+
+    .title {
+      font-size: 26px;
+    }
+
+    .description {
+      color: var(--accent-color);
+      font-weight: 400;
+    }
+  }
+
+  nav {
+    line-height: 3;
+    margin-left: 16rem;
+    background-color: var(--general-background);
+
+    a,
+    a:visited {
+      margin: 1rem;
+      color: var(--main)
+    }
+
+    a.active {
+      color: var(--accent-color)
+    }
+  }
+
+  .body {
+    background-color: var(--general-background);
+    padding: 2rem;
+  }
+}

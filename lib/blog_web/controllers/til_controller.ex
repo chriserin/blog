@@ -2,7 +2,16 @@ defmodule BlogWeb.TilController do
   use BlogWeb, :controller
 
   def index(conn, _params) do
-    tils = Blog.TilReader.read_tils("./priv/tils")
+    tils =
+      case :code.priv_dir(:blog) do
+        {:err, :badname} ->
+          []
+
+        priv_dir ->
+          tils_dir = Path.join([priv_dir, "tils"])
+          Blog.TilReader.read_tils(tils_dir)
+      end
+
     render(conn, "index.html", tils: tils)
   end
 end

@@ -57,7 +57,8 @@ defmodule Blog.MixProject do
       {:plug_cowboy, "~> 2.7.2"},
       {:earmark, "~> 1.4"},
       {:phoenix_html_helpers, "~> 1.0"},
-      {:phoenix_view, "~> 2.0"}
+      {:phoenix_view, "~> 2.0"},
+      {:briefly, "~> 0.5", only: :test}
     ]
   end
 

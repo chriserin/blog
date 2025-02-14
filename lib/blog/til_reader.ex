@@ -1,40 +1,32 @@
 defmodule Blog.TilReader do
-  alias Til
+  require(Logger)
 
   @doc """
   Reads all markdown files from a given directory and returns them as a list of Til structs.
   """
+  @spec read_tils(directory :: String.t()) :: [Blog.Til.t()] | []
   def read_tils(directory) when is_binary(directory) do
     case File.ls(directory) do
       {:ok, files} ->
-        Enum.flat_map(files, fn file ->
-          path = Path.join(directory, file)
-
-          if String.ends_with?(path, ".md") do
-            case File.read(path) do
-              {:ok, content} -> [parse_til(file, content)]
-              _ -> []
-            end
-          else
-            []
-          end
-        end)
+        Stream.map(files, &Blog.Til.from_filename(&1))
+        |> Stream.reject(&(&1 == :error))
+        |> Stream.map(&add_content(&1, directory))
+        |> Stream.reject(&(&1 == :error))
+        |> Enum.to_list()
 
       {:error, reason} ->
-        IO.puts("Error reading directory: #{reason}")
+        Logger.error("Error reading the tils directory: #{reason}")
         []
     end
   end
 
-  defp parse_til(filename, content) do
-    # For simplicity, we'll assume the first line is the title
-    [title | rest] = String.split(content, "\n", parts: 2)
+  @spec add_content(til :: Blog.Til.t(), directory :: String.t()) :: [Blog.Til.t()] | :error
+  defp add_content(%Blog.Til{} = til, directory) do
+    path = Path.join(directory, til.filename)
 
-    %Blog.Til{
-      title: String.trim_leading(title, "# "),
-      content: Enum.join(rest, "\n"),
-      filename: filename,
-      id: filename
-    }
+    case File.read(path) do
+      {:ok, content} -> Blog.Til.add_content(til, content)
+      _ -> :error
+    end
   end
 end

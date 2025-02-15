@@ -1,13 +1,5 @@
 <div class="list-container">
   <%= for til <- @tils do %>
-      <div class="list-post">
-        <div class="date"><%= Calendar.strftime(til.date, "%-m/%-d/%Y") %></div>
-        <div class="title">
-          <a href={~p"/tils/#{til}"}>
-            <div><%= til.title  %></div>
-          </a>
-        </div>
-        <div class="content til"><%= raw(Earmark.as_html!(til.content))  %></div>
-      </div>
+    <.til til={til} />
   <% end %>
 </div>

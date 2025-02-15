@@ -4,7 +4,7 @@ defmodule BlogWeb.TilController do
   def index(conn, _params) do
     tils =
       case :code.priv_dir(:blog) do
-        {:err, :badname} ->
+        {:error, :bad_name} ->
           []
 
         priv_dir ->

@@ -163,3 +163,25 @@ header {
     padding: 2rem;
   }
 }
+
+.content.til {
+  li {
+    margin-bottom: 0;
+
+    &::marker {
+      font-weight: 500;
+    }
+  }
+
+  p {
+    margin-bottom: 1.5rem;
+  }
+
+  ol {
+    margin-bottom: 2rem;
+  }
+
+  code.inline {
+    background-color: color-mix(in oklab, var(--accent-color) 40%, white)
+  }
+}

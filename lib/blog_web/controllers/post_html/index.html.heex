@@ -1,4 +1,12 @@
 
+<div class="posts-header">
+  <div class="feed-link">
+    <.link href={~p"/feed"}>
+      <span class="feed-icon">RSS</span> Subscribe to posts
+    </.link>
+  </div>
+</div>
+
 <div class="list-container">
   <%= for post <- @posts do %>
     <.post post={post} conn={@conn} />

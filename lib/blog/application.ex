@@ -13,11 +13,11 @@ defmodule Blog.Application do
       BlogWeb.Telemetry,
       # Start the PubSub system
       {Phoenix.PubSub, name: Blog.PubSub},
-      # Start the Endpoint (http/https)
-      BlogWeb.Endpoint,
       # Start a worker by calling: Blog.Worker.start_link(arg)
       # {Blog.Worker, arg}
-      Blog.TilStore
+      Blog.TilStore,
+      # Start the Endpoint (http/https)
+      BlogWeb.Endpoint
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

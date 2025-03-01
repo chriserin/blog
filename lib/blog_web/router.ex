@@ -43,6 +43,9 @@ defmodule BlogWeb.Router do
     # TILS
     get "/tils", TilController, :index
     get "/tils/:id", TilController, :show
+    
+    # RSS Feed
+    get "/feed", FeedController, :index
   end
 
   def basic_auth(conn, _opts) do

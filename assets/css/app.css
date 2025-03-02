@@ -9,7 +9,11 @@
   --general-background: #fafafa;
   --accent-color: #8cab8c;
   --main: #444444;
-  font-weight: 300;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%
 }
 
 
@@ -56,7 +60,7 @@
 
 .container {
   margin: 0 auto;
-  max-width: 60rem;
+  max-width: 80rem;
   padding: 0 2rem;
   position: relative;
   width: 100%;
@@ -129,8 +133,79 @@ main.container {
     }
   }
 
-  .content {
-    font-family: 'Times New Roman', Times, serif;
+}
+
+.content {
+  font-family: 'Times New Roman', Times, serif;
+  color: var(--main);
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: Proxima Nova;
+    font-weight: 500;
+  }
+
+  h2 {
+    font-size: 2.0rem;
+  }
+
+  h3 {
+    font-size: 1.8rem;
+  }
+
+  p,
+  ul,
+  pre {
+    margin-bottom: 1rem;
+  }
+
+  ul {
+    li::before {
+      content: "▪";
+      padding-right: 1rem;
+      padding-left: 1rem;
+    }
+  }
+
+  ol {
+    counter-reset: count 0;
+    margin-left: 3rem;
+
+    li {
+      counter-increment: count 1;
+    }
+
+    li::marker {
+      content: counter(count, decimal) '. ';
+      font-weight: 500;
+    }
+  }
+
+  pre {
+    padding: 1em;
+    background: #f4f5f6;
+    border-left: .3rem solid var(--accent-color);
+    overflow-y: hidden;
+  }
+
+  code {
+    background: #f4f5f6;
+    border-radius: .4rem;
+    font-size: 80%;
+    margin: 0 .2rem;
+    padding: .2rem .5rem;
+    white-space: nowrap;
+  }
+
+  pre>code {
+    border-radius: 0;
+    display: block;
+    padding: 1rem 1.5rem;
+    white-space: pre;
   }
 }
 
@@ -145,6 +220,10 @@ main.content section {
 body {
   background-color: var(--general-background);
   margin: 0;
+  font-family: Helvetica, Arial, sans-serif;
+  font-weight: 300;
+  line-height: 1.6;
+  font-size: 1.6em;
 }
 
 header {
@@ -164,7 +243,7 @@ header {
 
   .container {
     margin: 0 auto;
-    max-width: 60rem;
+    max-width: 80rem;
     padding: 0 2rem;
     position: relative;
     width: 100%;

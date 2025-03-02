@@ -5,7 +5,6 @@
   --general-background: #fafafa;
   --accent-color: #8cab8c;
   --main: #444444;
-  --feed-color: #f5a742;
 }
 
 /* Alerts and form errors */
@@ -54,10 +53,10 @@ main.container {
 
   .posts-header {
     display: flex;
-    justify-content: flex-end;
+    justify-content: flex-start;
     padding: 1rem 2rem 0 2rem;
     background-color: var(--general-background);
-    
+
     .feed-link {
       a {
         display: flex;
@@ -65,14 +64,14 @@ main.container {
         text-decoration: none;
         color: var(--main);
         font-size: 0.9rem;
-        
+
         &:hover {
-          color: var(--feed-color);
+          color: var(--accent-color);
         }
-        
+
         .feed-icon {
           font-weight: bold;
-          color: var(--feed-color);
+          color: var(--accent-color);
           margin-right: 0.5rem;
           font-size: 0.85rem;
         }

@@ -164,11 +164,11 @@ main.container {
   }
 
   ul {
-    li::before {
-      content: "▪";
-      padding-right: 1rem;
-      padding-left: 1rem;
-    }
+    /* li::before { */
+    /*   content: "▪"; */
+    /*   padding-right: 1rem; */
+    /*   padding-left: 1rem; */
+    /* } */
   }
 
   ol {

@@ -201,6 +201,10 @@ main.container {
     white-space: nowrap;
   }
 
+  code.inline {
+    background-color: color-mix(in oklab, var(--accent-color) 40%, white)
+  }
+
   pre>code {
     border-radius: 0;
     display: block;

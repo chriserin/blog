@@ -6,7 +6,7 @@ const fs = require('fs');
 const path = require('path');
 
 module.exports = {
-  content: ['./js/**/*.js', '../lib/demo_web.ex', '../lib/demo_web/**/*.*ex'],
+  content: ['./js/**/*.js', '../lib/blog_web.ex', '../lib/blog_web/**/*.*ex'],
   theme: {
     extend: {
       colors: {

@@ -1,11 +1,18 @@
+/* TailwindCSS directives */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 /* This file is for your main application css. */
-@import "./phoenix.css";
 
 * {
   --general-background: #fafafa;
   --accent-color: #8cab8c;
   --main: #444444;
+  font-weight: 300;
 }
+
+
 
 /* Alerts and form errors */
 .alert {
@@ -45,6 +52,14 @@
   color: #a94442;
   display: block;
   margin: -1rem 0 2rem;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 60rem;
+  padding: 0 2rem;
+  position: relative;
+  width: 100%;
 }
 
 main.container {
@@ -146,6 +161,14 @@ header {
   }
 
   color: #444444;
+
+  .container {
+    margin: 0 auto;
+    max-width: 60rem;
+    padding: 0 2rem;
+    position: relative;
+    width: 100%;
+  }
 
   .top {
     background-color: var(--general-background);

@@ -53,6 +53,7 @@ defmodule BlogWeb do
 
       import Plug.Conn
       import Phoenix.Controller
+      import Phoenix.LiveView.Router
     end
   end
 
@@ -60,6 +61,23 @@ defmodule BlogWeb do
     quote do
       use Phoenix.Channel
       import BlogWeb.Gettext
+    end
+  end
+  
+  def live_view do
+    quote do
+      use Phoenix.LiveView,
+        layout: {BlogWeb.Layouts, :live}
+        
+      unquote(html_helpers())
+    end
+  end
+
+  def live_component do
+    quote do
+      use Phoenix.LiveComponent
+
+      unquote(html_helpers())
     end
   end
 

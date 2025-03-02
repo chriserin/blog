@@ -58,7 +58,8 @@ defmodule Blog.MixProject do
       {:earmark, "~> 1.4"},
       {:phoenix_html_helpers, "~> 1.0"},
       {:phoenix_view, "~> 2.0"},
-      {:briefly, "~> 0.5", only: :test}
+      {:briefly, "~> 0.5", only: :test},
+      {:logger_file_backend, "0.0.14", only: :dev}
     ]
   end
 

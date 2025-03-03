@@ -1,5 +1,6 @@
 defmodule BlogWeb.TicTacToeLive do
   use BlogWeb, :live_view
+  alias Blog.Game.TicTacToeBoard
   
   @moduledoc """
   LiveView implementation of a Tic-Tac-Toe game.
@@ -9,7 +10,7 @@ defmodule BlogWeb.TicTacToeLive do
   def mount(_params, _session, socket) do
     {:ok, assign(socket, 
       page_title: "Tic-Tac-Toe Game",
-      board: initialize_board(),
+      board: TicTacToeBoard.initialize(),
       current_player: "X",
       game_over: false,
       winner: nil
@@ -21,10 +22,10 @@ defmodule BlogWeb.TicTacToeLive do
     row = String.to_integer(row)
     col = String.to_integer(col)
     
-    if can_mark?(socket.assigns.board, row, col) && !socket.assigns.game_over do
-      board = mark_position(socket.assigns.board, row, col, socket.assigns.current_player)
+    if TicTacToeBoard.can_mark?(socket.assigns.board, row, col) && !socket.assigns.game_over do
+      board = TicTacToeBoard.mark_position(socket.assigns.board, row, col, socket.assigns.current_player)
       
-      {game_over, winner} = check_game_status(board)
+      {game_over, winner} = TicTacToeBoard.check_game_status(board)
       next_player = if socket.assigns.current_player == "X", do: "O", else: "X"
       
       {:noreply, assign(socket, 
@@ -41,7 +42,7 @@ defmodule BlogWeb.TicTacToeLive do
   @impl true
   def handle_event("restart", _params, socket) do
     {:noreply, assign(socket,
-      board: initialize_board(),
+      board: TicTacToeBoard.initialize(),
       current_player: "X",
       game_over: false,
       winner: nil
@@ -86,81 +87,5 @@ defmodule BlogWeb.TicTacToeLive do
       </div>
     </div>
     """
-  end
-
-  # Initialize an empty 3x3 board
-  defp initialize_board do
-    for _row <- 1..3 do
-      for _col <- 1..3 do
-        nil
-      end
-    end
-  end
-
-  # Check if a position can be marked (is empty)
-  defp can_mark?(board, row, col) do
-    get_in(board, [Access.at(row), Access.at(col)]) == nil
-  end
-
-  # Mark a position on the board with the player's symbol
-  defp mark_position(board, row, col, player) do
-    put_in(board, [Access.at(row), Access.at(col)], player)
-  end
-
-  # Check if the game is over and determine the winner
-  defp check_game_status(board) do
-    # Check rows
-    row_win = Enum.any?(0..2, fn row ->
-      case Enum.at(board, row) do
-        [p, p, p] when p != nil -> {true, p}
-        _ -> false
-      end
-    end)
-
-    # Check columns
-    col_win = Enum.any?(0..2, fn col ->
-      case Enum.map(board, &Enum.at(&1, col)) do
-        [p, p, p] when p != nil -> {true, p}
-        _ -> false
-      end
-    end)
-
-    # Check diagonals
-    diag1 = [
-      get_in(board, [Access.at(0), Access.at(0)]),
-      get_in(board, [Access.at(1), Access.at(1)]),
-      get_in(board, [Access.at(2), Access.at(2)])
-    ]
-    
-    diag2 = [
-      get_in(board, [Access.at(0), Access.at(2)]),
-      get_in(board, [Access.at(1), Access.at(1)]),
-      get_in(board, [Access.at(2), Access.at(0)])
-    ]
-    
-    diag_win = case diag1 do
-      [p, p, p] when p != nil -> {true, p}
-      _ -> case diag2 do
-            [p, p, p] when p != nil -> {true, p}
-            _ -> false
-          end
-    end
-
-    # Determine winner
-    winner = case {row_win, col_win, diag_win} do
-      {{true, player}, _, _} -> player
-      {_, {true, player}, _} -> player
-      {_, _, {true, player}} -> player
-      _ -> nil
-    end
-
-    # Check if board is full (draw)
-    board_full = Enum.all?(board, fn row ->
-      Enum.all?(row, &(&1 != nil))
-    end)
-
-    game_over = winner != nil || board_full
-    
-    {game_over, winner}
   end
 end

@@ -9,6 +9,7 @@
   --general-background: #fafafa;
   --accent-color: #8cab8c;
   --main: #444444;
+  --block-background: #f4f5f6;
 }
 
 html {
@@ -122,7 +123,7 @@ main.container {
 
   .title {
 
-    font-family: Proxima Nova;
+    font-family: Helvetic, Arial, sans-serif;
     font-weight: 400;
     font-size: 18pt;
 
@@ -163,13 +164,13 @@ main.container {
     margin-bottom: 1rem;
   }
 
-  ul {
-    /* li::before { */
-    /*   content: "▪"; */
-    /*   padding-right: 1rem; */
-    /*   padding-left: 1rem; */
-    /* } */
-  }
+  /* ul { */
+  /*   li::before { */
+  /*     content: "▪"; */
+  /*     padding-right: 1rem; */
+  /*     padding-left: 1rem; */
+  /*   } */
+  /* } */
 
   ol {
     counter-reset: count 0;
@@ -187,13 +188,13 @@ main.container {
 
   pre {
     padding: 1em;
-    background: #f4f5f6;
+    background: var(--block-background);
     border-left: .3rem solid var(--accent-color);
     overflow-y: hidden;
   }
 
   code {
-    background: #f4f5f6;
+    background: var(--block-background);
     border-radius: .4rem;
     font-size: 80%;
     margin: 0 .2rem;
@@ -210,6 +211,17 @@ main.container {
     display: block;
     padding: 1rem 1.5rem;
     white-space: pre;
+  }
+
+  blockquote {
+    background: color-mix(in oklab, var(--block-background) 95%, black);
+    border-radius: 0;
+    display: block;
+    padding: 1.5rem 1.5rem;
+
+    p {
+      margin-bottom: 0;
+    }
   }
 }
 
@@ -308,7 +320,11 @@ header {
   }
 
   p {
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.2rem;
+  }
+
+  blockquote p {
+    margin: 0;
   }
 
   ol {

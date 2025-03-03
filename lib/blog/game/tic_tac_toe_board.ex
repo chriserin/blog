@@ -37,18 +37,21 @@ defmodule Blog.Game.TicTacToeBoard do
   """
   def check_game_status(board) do
     # Check rows
-    row_win = Enum.any?(0..2, fn row ->
-      case Enum.at(board, row) do
-        [p, p, p] when p != nil -> {true, p}
-        _ -> false
+    row_winner = Enum.find_value(0..2, fn row ->
+      if match?([p, p, p] when p != nil, Enum.at(board, row)) do
+        hd(Enum.at(board, row))
+      else
+        nil
       end
     end)
 
     # Check columns
-    col_win = Enum.any?(0..2, fn col ->
-      case Enum.map(board, &Enum.at(&1, col)) do
-        [p, p, p] when p != nil -> {true, p}
-        _ -> false
+    col_winner = Enum.find_value(0..2, fn col ->
+      column = Enum.map(board, &Enum.at(&1, col))
+      if match?([p, p, p] when p != nil, column) do
+        hd(column)
+      else
+        nil
       end
     end)
 
@@ -65,21 +68,14 @@ defmodule Blog.Game.TicTacToeBoard do
       get_in(board, [Access.at(2), Access.at(0)])
     ]
     
-    diag_win = case diag1 do
-      [p, p, p] when p != nil -> {true, p}
-      _ -> case diag2 do
-            [p, p, p] when p != nil -> {true, p}
-            _ -> false
-          end
+    diag_winner = cond do
+      match?([p, p, p] when p != nil, diag1) -> hd(diag1)
+      match?([p, p, p] when p != nil, diag2) -> hd(diag2)
+      true -> nil
     end
 
     # Determine winner
-    winner = case {row_win, col_win, diag_win} do
-      {{true, player}, _, _} -> player
-      {_, {true, player}, _} -> player
-      {_, _, {true, player}} -> player
-      _ -> nil
-    end
+    winner = row_winner || col_winner || diag_winner
 
     # Check if board is full (draw)
     board_full = Enum.all?(board, fn row ->

@@ -48,7 +48,7 @@ defmodule BlogWeb.Router do
     get "/feed", FeedController, :index
 
     # Games
-    live "/games/tic-tac-toe", TicTacToeLive
+    live "/projects/tic-tac-toe", TicTacToeLive
   end
 
   def basic_auth(conn, _opts) do

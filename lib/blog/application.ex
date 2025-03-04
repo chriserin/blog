@@ -13,6 +13,8 @@ defmodule Blog.Application do
       BlogWeb.Telemetry,
       # Start the PubSub system
       {Phoenix.PubSub, name: Blog.PubSub},
+      # Start the Presence system
+      BlogWeb.Presence,
       # Start a worker by calling: Blog.Worker.start_link(arg)
       # {Blog.Worker, arg}
       Blog.TilStore,

@@ -59,6 +59,7 @@ defmodule Blog.MixProject do
       {:phoenix_html_helpers, "~> 1.0"},
       {:phoenix_view, "~> 2.0"},
       {:briefly, "~> 0.5", only: :test},
+      {:floki, "~> 0.36.0", only: :test},
       {:logger_file_backend, "0.0.14", only: :dev}
     ]
   end

@@ -41,3 +41,14 @@ the tests, found the failures and refactored. Great.
 It then wanted to write tests for the live view as well, which I welcomed, but
 it wrote incorrect routes in the tests and then wanted to change the routes to
 fit the test.
+
+## Use App colors instead of the blue color from tailwind
+
+Total cost: $0.1075
+Total duration (API): 35.8s
+Total duration (wall): 6m 8.4s
+
+This was a minor change to just use the accent color from app.css instead of
+the blue color from tailwind. It went fine, a one prompt fix. It decided the
+code needed to be formatted however, which previously it hadn't approached.
+Yes I want it to format the code. Weird that it asked me during this change.
